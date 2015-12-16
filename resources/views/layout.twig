@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block pagetitle %}{% endblock %} | Kettle</title>
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/css/foundation.min.css">
+</head>
+<body>
+	<ul class="navigation"></ul>
+	<div class="container">
+	{% block content %}{% endblock %}
+	</div>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/js/foundation.min.js"></script>
+	{% block javascript %}{% endblock %}
+</body>
+</html>
