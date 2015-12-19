@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Input;
+use Auth;
+use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -61,5 +64,51 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    
+    public function getLogin()
+    {
+        $errors = ( Input::old( 'errors' ) ) ? Input::old( 'errors' ) : new MessageBag();
+        $viewData = [
+            'pageTitle' => 'Login',
+            'errors' => $errors,
+            'redirect' => Input::get( 'redirect_to' ),
+        ];
+        return view( 'auth.login', $viewData );
+    }
+    
+    public function postLogin()
+    {
+        $email = Input::get( 'email' );
+        $validator = Validator::make( Input::all(), [
+            "email" => "required|email",
+            "password" => "required"
+        ] );
+        if( $validator->passes() ) {
+            $credentials = [
+                'email' => $email,
+                'password' => Input::get( 'password' )
+            ];
+            if( Auth::attempt( $credentials ) ) {
+                if( $redirect_admin = Input::get( 'redirect_to' ) ) {
+                    return redirect()->to( $redirect_admin );
+                }
+                return redirect()->route( 'dashboard' );
+            }
+            $data[ 'errors' ] = new MessageBag( [
+                'password' => 'Email and/or Password are invalid',
+            ] );
+        }
+        else {
+            $data[ 'errors' ] = $validator->getMessageBag();
+        }
+        $data[ 'email' ] = $email;
+        return redirect()->route( 'auth.login' )->withInput( $data );
+    }
+    
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->route( 'home' );
     }
 }
