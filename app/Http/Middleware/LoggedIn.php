@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use View;
 use Illuminate\Contracts\Auth\Guard;
+use View;
 
 class LoggedIn
 {
@@ -18,7 +18,7 @@ class LoggedIn
     /**
      * Create a new filter instance.
      *
-     * @param  Guard $auth
+     * @param Guard $auth
      *
      * @return void
      */
@@ -30,8 +30,8 @@ class LoggedIn
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @return mixed
      */

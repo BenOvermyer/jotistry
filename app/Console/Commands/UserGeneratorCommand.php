@@ -2,14 +2,13 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserGeneratorCommand extends Command
 {
-
     /**
      * The console command name.
      *
@@ -26,7 +25,6 @@ class UserGeneratorCommand extends Command
 
     /**
      * Create a new command instance.
-     *
      */
     public function __construct()
     {
@@ -56,7 +54,7 @@ class UserGeneratorCommand extends Command
                     echo "\n";
                 }
             }
-            $this->info('Try running ' . $this->name . ' again.');
+            $this->info('Try running '.$this->name.' again.');
         } else {
             if (count(User::all()) == 0) {
                 $userData['owner'] = true;
@@ -64,8 +62,7 @@ class UserGeneratorCommand extends Command
             $userData['password'] = Hash::make($userData['password']);
             User::create($userData);
 
-            $this->info("User created.");
+            $this->info('User created.');
         }
     }
-
 }
