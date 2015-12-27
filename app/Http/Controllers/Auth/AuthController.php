@@ -39,7 +39,7 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -54,7 +54,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -65,50 +65,49 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
-    
+
     public function getLogin()
     {
-        $errors = ( Input::old( 'errors' ) ) ? Input::old( 'errors' ) : new MessageBag();
+        $errors = (Input::old('errors')) ? Input::old('errors') : new MessageBag();
         $viewData = [
             'pageTitle' => 'Login',
             'errors' => $errors,
-            'redirect' => Input::get( 'redirect_to' ),
+            'redirect' => Input::get('redirect_to'),
         ];
-        return view( 'auth.login', $viewData );
+        return view('auth.login', $viewData);
     }
-    
+
     public function postLogin()
     {
-        $email = Input::get( 'email' );
-        $validator = Validator::make( Input::all(), [
+        $email = Input::get('email');
+        $validator = Validator::make(Input::all(), [
             "email" => "required|email",
             "password" => "required"
-        ] );
-        if( $validator->passes() ) {
+        ]);
+        if ($validator->passes()) {
             $credentials = [
                 'email' => $email,
-                'password' => Input::get( 'password' )
+                'password' => Input::get('password')
             ];
-            if( Auth::attempt( $credentials ) ) {
-                if( $redirect_admin = Input::get( 'redirect_to' ) ) {
-                    return redirect()->to( $redirect_admin );
+            if (Auth::attempt($credentials)) {
+                if ($redirect_admin = Input::get('redirect_to')) {
+                    return redirect()->to($redirect_admin);
                 }
-                return redirect()->route( 'dashboard' );
+                return redirect()->route('dashboard');
             }
-            $data[ 'errors' ] = new MessageBag( [
+            $data['errors'] = new MessageBag([
                 'password' => 'Email and/or Password are invalid',
-            ] );
+            ]);
+        } else {
+            $data['errors'] = $validator->getMessageBag();
         }
-        else {
-            $data[ 'errors' ] = $validator->getMessageBag();
-        }
-        $data[ 'email' ] = $email;
-        return redirect()->route( 'auth.login' )->withInput( $data );
+        $data['email'] = $email;
+        return redirect()->route('auth.login')->withInput($data);
     }
-    
+
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route( 'home' );
+        return redirect()->route('home');
     }
 }
