@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
-use Input;
-use Auth;
-use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\User;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\MessageBag;
+use Input;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -39,14 +39,15 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -54,14 +55,15 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -71,9 +73,10 @@ class AuthController extends Controller
         $errors = (Input::old('errors')) ? Input::old('errors') : new MessageBag();
         $viewData = [
             'pageTitle' => 'Login',
-            'errors' => $errors,
-            'redirect' => Input::get('redirect_to'),
+            'errors'    => $errors,
+            'redirect'  => Input::get('redirect_to'),
         ];
+
         return view('auth.login', $viewData);
     }
 
@@ -81,18 +84,19 @@ class AuthController extends Controller
     {
         $email = Input::get('email');
         $validator = Validator::make(Input::all(), [
-            "email" => "required|email",
-            "password" => "required"
+            'email'    => 'required|email',
+            'password' => 'required',
         ]);
         if ($validator->passes()) {
             $credentials = [
-                'email' => $email,
-                'password' => Input::get('password')
+                'email'    => $email,
+                'password' => Input::get('password'),
             ];
             if (Auth::attempt($credentials)) {
                 if ($redirect_admin = Input::get('redirect_to')) {
                     return redirect()->to($redirect_admin);
                 }
+
                 return redirect()->route('dashboard');
             }
             $data['errors'] = new MessageBag([
@@ -102,12 +106,14 @@ class AuthController extends Controller
             $data['errors'] = $validator->getMessageBag();
         }
         $data['email'] = $email;
+
         return redirect()->route('auth.login')->withInput($data);
     }
 
     public function getLogout()
     {
         Auth::logout();
+
         return redirect()->route('home');
     }
 }
