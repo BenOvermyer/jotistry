@@ -2,6 +2,12 @@
 
 Route::group(['middleware' => 'logged_in'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+    
+    Route::group(['prefix' => 'notes'], function () {
+        Route::get('/', ['as' => 'notes.index', 'uses' => 'NotesController@index']);
+        Route::post('save', ['as' => 'notes.save', 'uses' => 'NotesController@save']);
+        Route::delete('delete', ['as' => 'notes.delete', 'uses' => 'NotesController@delete']);
+    });
 
     // Authentication routes
     Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);

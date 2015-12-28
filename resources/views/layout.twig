@@ -4,19 +4,33 @@
     <title>{{ pageTitle }} | Kettle</title>
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/css/foundation.min.css">
+    <meta charset="utf-8">
 </head>
 <body>
-<ul class="navigation">
-    {% if logged_in == true %}
-        <li><a href="{{ url_route( 'doLogout' ) }}">Log Out</a></li>
-    {% else %}
-        <li><a href="{{ url_route( 'login' ) }}">Log In</a></li>
-    {% endif %}
-</ul>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="menu-text">{{ pageTitle }}</li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+          {% if logged_in == true %}
+              <li><a href="{{ url_route( 'dashboard' ) }}">Dashboard</a></li>
+              <li><a href="{{ url_route( 'notes.index' ) }}">Notes</a></li>
+              <li><a href="{{ url_route( 'doLogout' ) }}">Log Out</a></li>
+          {% else %}
+              <li><a href="{{ url_route( 'login' ) }}">Log In</a></li>
+          {% endif %}
+      </ul>
+    </div>
+</div>
 <div class="container">
     {% block content %}{% endblock %}
 </div>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/js/foundation.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 {% block javascript %}{% endblock %}
 </body>
 </html>
