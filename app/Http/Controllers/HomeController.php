@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Note;
+use App\Note;
 
 class HomeController extends Controller
 {

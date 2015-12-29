@@ -10,7 +10,7 @@ class Note extends Model
 
     public static $rules = [
         'title' => 'required',
-        'body' => 'required',
+        'body'  => 'required',
     ];
 
     protected $fillable = [
