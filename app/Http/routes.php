@@ -2,7 +2,7 @@
 
 Route::group(['middleware' => 'logged_in'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-    
+
     Route::group(['prefix' => 'notes'], function () {
         Route::get('/', ['as' => 'notes.index', 'uses' => 'NotesController@index']);
         Route::get('all', ['as' => 'notes.all', 'uses' => 'NotesController@all']);
