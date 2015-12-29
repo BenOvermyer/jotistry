@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use \App\Note;
+
 class HomeController extends Controller
 {
     public function index()
@@ -11,6 +13,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('home.dashboard', ['pageTitle' => 'Dashboard']);
+        $noteCount = Note::count();
+
+        return view('home.dashboard', ['pageTitle' => 'Dashboard'])->with(['noteCount' => $noteCount]);
     }
 }

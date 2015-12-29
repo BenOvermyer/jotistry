@@ -1,15 +1,29 @@
 {% extends 'layout' %}
 
 {% block content %}
-  <div class="row">
-    <div class="small-4 columns">
-      <ul class="menu">
-        <li><button class="new button">+</button></li>
-      </ul>
-      <div class="notes">
-      </div>
+    <div class="row">
+        <div class="small-4 columns">
+            <ul class="menu">
+                <li>
+                    <button class="new button">+</button>
+                </li>
+            </ul>
+            <div class="cards">
+                {% for note in notes %}
+                <div class="card {{ note.id }}">
+                    <h3>{{ note.title }}</h3>
+                    <div>{{ note.body }}</div>
+                    <span>{{ note.id }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="small-8 columns">
+            <div class="title" contenteditable></div>
+            <input type="hidden" class="id">
+            <div class="body" contenteditable></div>
+            <button class="save button">Save</button>
+            <button class="update button">Update</button>
+        </div>
     </div>
-    <div class="small-8 columns">
-    </div>
-  </div>
 {% endblock %}

@@ -5,8 +5,10 @@ Route::group(['middleware' => 'logged_in'], function () {
     
     Route::group(['prefix' => 'notes'], function () {
         Route::get('/', ['as' => 'notes.index', 'uses' => 'NotesController@index']);
-        Route::post('save', ['as' => 'notes.save', 'uses' => 'NotesController@save']);
-        Route::delete('delete', ['as' => 'notes.delete', 'uses' => 'NotesController@delete']);
+        Route::get('all', ['as' => 'notes.all', 'uses' => 'NotesController@all']);
+        Route::post('/', ['as' => 'notes.save', 'uses' => 'NotesController@save']);
+        Route::post('/{id}', ['as' => 'notes.update', 'uses' => 'NotesController@update']);
+        Route::delete('/{id}/destroy', ['as' => 'notes.destroy', 'uses' => 'NotesController@destroy']);
     });
 
     // Authentication routes
