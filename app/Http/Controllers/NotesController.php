@@ -30,7 +30,7 @@ class NotesController extends Controller
         if ($note) {
             return response()->json($note);
         } else {
-            return response()->setStatusCode(500);
+            return response(500);
         }
     }
 
@@ -43,7 +43,7 @@ class NotesController extends Controller
         if ($note->update($data)) {
             return response()->json($note);
         } else {
-            return response()->setStatusCode(500);
+            return response(500);
         }
     }
 
@@ -51,10 +51,10 @@ class NotesController extends Controller
     {
         $note = Note::findOrFail($id);
 
-        if ($note->destroy()) {
-            return response()->setStatusCode(204);
+        if ($note->delete()) {
+            return response(204);
         } else {
-            return response()->setStatusCode(500);
+            return response(500);
         }
     }
 }

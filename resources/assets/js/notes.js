@@ -15,11 +15,29 @@ $(document).ready(function () {
         $('.title').focus();
     });
 
+    $('.delete').click(function () {
+        var noteId = $('.id').val();
+
+        $.ajax({
+            url: '/notes/' + noteId,
+            method: 'DELETE'
+        }).done(function(response) {
+            $('.' + noteId).remove();
+            $('.title').html('');
+            $('.body').html('');
+            $('.update').hide();
+            $('.save').show();
+            $('.active').removeClass('active');
+            $('.title').focus();
+        });
+    });
+
     $('.cards').delegate('.card', 'click', function(){
         $('.active').removeClass('active');
         $(this).addClass('active');
         $('.save').hide();
         $('.update').show();
+        $('.delete').show();
         $('.title').html($(this).children('h3').html());
         $('.body').html($(this).children('div').html());
         $('.id').val($(this).children('span').html());
