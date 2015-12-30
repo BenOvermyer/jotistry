@@ -44,7 +44,7 @@ $(document).ready(function () {
         };
 
         $.post('/notes/' + $('.id').val(), data, function(response) {
-            $('.cards > .' + response.id).html('<div class="card"><h3>' + response.title + '</h3><div>' + response.body + '</div><span>' + response.id + '</span>');
+            $('.cards > .' + response.id).html('<h3>' + response.title + '</h3><div>' + response.body + '</div><span>' + response.id + '</span>');
         });
     });
 
