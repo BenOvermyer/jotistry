@@ -11,4 +11,23 @@
 
         </div>
     </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <h2>Assigned GitHub Issues</h2>
+            <table class="issues">
+                <thead>
+                    <tr><th>Issue Title</th><th>Labels</th><th>Repository</th></tr>
+                </thead>
+                <tbody>
+                    {% for issue in issues %}
+                        <tr>
+                            <td><a href="{{ issue.html_url }}">{{ issue.title }}</a></td>
+                            <td>{% for label in issue.labels %}<span style="background-color: #{{ label.color }}" class="github-label">{{ label.name }}</span>{% endfor %}</td>
+                            <td><a href="{{ issue.repository.html_url }}">{{ issue.repository.full_name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

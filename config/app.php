@@ -48,6 +48,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         TwigBridge\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        GrahamCampbell\GitHub\GitHubServiceProvider::class,
 
     ],
 
@@ -99,6 +100,7 @@ return [
         'Twig'      => TwigBridge\Facade\Twig::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'GitHub'    => GrahamCampbell\GitHub\Facades\GitHub::class,
     ],
 
 ];
