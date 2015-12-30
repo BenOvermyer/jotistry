@@ -1,12 +1,20 @@
 .card {
   border: 1px solid #eee;
+  color: #aaa;
   padding: 1rem;
   margin: 1rem;
   background-color: #fff;
   height: 8rem;
   overflow: hidden; }
+  .card.active {
+    background-color: #fafafa;
+    border: 1px solid #eaeaea; }
   .card h3 {
+    color: #777;
     font-size: 1.25rem; }
+  .card h4 {
+    font-size: 0.75rem;
+    font-style: italic; }
   .card span {
     display: none; }
 
@@ -14,16 +22,14 @@
   display: none; }
 
 .cards {
-  max-height: 30rem;
-  overflow-y: scroll; }
+  height: 30rem;
+  overflow: auto; }
 
 .body {
   border: 1px solid #eee;
-  height: 100%;
-  max-height: 30rem;
-  min-height: 25rem;
-  overflow-y: scroll;
+  height: 30rem;
   outline: none;
+  overflow: auto;
   margin-bottom: 1rem;
   padding: 1rem; }
 

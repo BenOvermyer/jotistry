@@ -2,16 +2,18 @@
 
 {% block content %}
     <div class="row">
+        <div class="small-12 columns">
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
         <div class="small-4 columns">
-            <ul class="menu">
-                <li>
-                    <button class="new button"><i class="fa fa-plus"></i></button>
-                </li>
-            </ul>
+            <button class="new large expanded button"><i class="fa fa-plus"></i> New Note</button>
             <div class="cards">
                 {% for note in notes %}
                 <div class="card {{ note.id }}">
                     <h3>{{ note.title|raw }}</h3>
+                    <h4>Last Updated: {{ note.updated_at|date('M jS, Y g:i a', timezone="America/Chicago") }}</h4>
                     <div>{{ note.body|raw }}</div>
                     <span>{{ note.id }}</span>
                 </div>
@@ -22,7 +24,7 @@
             <div class="title" contenteditable></div>
             <input type="hidden" class="id">
             <div class="body" contenteditable></div>
-            <button class="save button">Save</button>
+            <button class="save button"><i class="fa fa-save"></i> Save</button>
             <button class="update button">Update</button>
         </div>
     </div>

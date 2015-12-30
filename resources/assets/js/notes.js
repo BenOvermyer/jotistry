@@ -11,10 +11,13 @@ $(document).ready(function () {
         $('.body').html('');
         $('.update').hide();
         $('.save').show();
+        $('.active').removeClass('active');
         $('.title').focus();
     });
 
-    $('.card').click(function(){
+    $('.cards').delegate('.card', 'click', function(){
+        $('.active').removeClass('active');
+        $(this).addClass('active');
         $('.save').hide();
         $('.update').show();
         $('.title').html($(this).children('h3').html());
@@ -29,7 +32,9 @@ $(document).ready(function () {
         };
 
         $.post('/notes', data, function(response) {
-            $('.cards').prepend('<div class="card"><h3>' + response.title + '</h3><div>' + response.body + '</div><span>' + response.id + '</span>');
+            var noteDate = new Date(response.updated_at);
+            noteDate = $.format.date(noteDate, 'MMM D, yyyy h:mm p');
+            $('.cards').prepend('<div class="card ' + response.id + ' active"><h3>' + response.title + '</h3><h4>Last Updated: ' + noteDate + '</h4><div>' + response.body + '</div><span>' + response.id + '</span>');
             $('.save').hide();
             $('.update').show();
             $('.id').val(response.id);
