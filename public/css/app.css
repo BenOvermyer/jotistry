@@ -5,10 +5,14 @@
   margin: 1rem;
   background-color: #fff;
   height: 8rem;
-  overflow: hidden; }
+  overflow: hidden;
+  box-shadow: 3px 3px 5px -1px rgba(66, 76, 97, 0.57); }
   .card.active {
-    background-color: #fafafa;
-    border: 1px solid #eaeaea; }
+    background-color: #f1f1f1;
+    border: 1px solid #eaeaea;
+    position: relative;
+    top: -2px;
+    left: -2px; }
   .card h3 {
     color: #777;
     font-size: 1.25rem; }

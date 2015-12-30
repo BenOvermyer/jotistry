@@ -6,10 +6,16 @@
   background-color: #fff;
   height: 8rem;
   overflow: hidden;
+  -webkit-box-shadow: 3px 3px 5px -1px rgba(66,76,97,0.57);
+  -moz-box-shadow: 3px 3px 5px -1px rgba(66,76,97,0.57);
+  box-shadow: 3px 3px 5px -1px rgba(66,76,97,0.57);
 
   &.active {
-    background-color: #fafafa;
+    background-color: #f1f1f1;
     border: 1px solid #eaeaea;
+    position: relative;
+    top: -2px;
+    left: -2px;
   }
 
   h3 {
