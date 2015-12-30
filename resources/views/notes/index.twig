@@ -11,8 +11,8 @@
             <div class="cards">
                 {% for note in notes %}
                 <div class="card {{ note.id }}">
-                    <h3>{{ note.title }}</h3>
-                    <div>{{ note.body }}</div>
+                    <h3>{{ note.title|raw }}</h3>
+                    <div>{{ note.body|raw }}</div>
                     <span>{{ note.id }}</span>
                 </div>
                 {% endfor %}
