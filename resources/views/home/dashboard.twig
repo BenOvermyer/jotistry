@@ -13,10 +13,26 @@
     </div>
     <div class="row">
         <div class="small-12 columns">
+            <h2>Assigned GitHub Pull Requests</h2>
+            <table class="issues">
+                <thead>
+                <tr><th>Title</th><th>Labels</th><th>Repository</th></tr>
+                </thead>
+                <tbody>
+                {% for pullRequest in pullRequests %}
+                    <tr>
+                        <td><a href="{{ pullRequest.html_url }}">{{ pullRequest.title }}</a></td>
+                        <td>{% for label in pullRequest.labels %}<span style="background-color: #{{ label.color }}" class="github-label">{{ label.name }}</span>{% endfor %}</td>
+                        <td><a href="{{ pullRequest.repository.html_url }}">{{ pullRequest.repository.full_name }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
             <h2>Assigned GitHub Issues</h2>
             <table class="issues">
                 <thead>
-                    <tr><th>Issue Title</th><th>Labels</th><th>Repository</th></tr>
+                    <tr><th>Title</th><th>Labels</th><th>Repository</th></tr>
                 </thead>
                 <tbody>
                     {% for issue in issues %}
