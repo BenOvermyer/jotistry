@@ -9,7 +9,7 @@ class TasksController extends Controller
 {
     public function index()
     {
-        $tasks = Task::where( 'is_completed', false )->get();
+        $tasks = Task::where('is_completed', false)->get();
 
         return view('tasks.index', ['pageTitle' => 'Tasks'])->with(['tasks' => $tasks]);
     }
