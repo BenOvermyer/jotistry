@@ -1,0 +1,25 @@
+{% extends 'layout' %}
+
+{% block content %}
+    <div class="row">
+        <div class="small-12 columns">
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <div contenteditable class="content"></div>
+            <button class="new-task large expanded button"><i class="fa fa-plus"></i> New Task</button>
+            <div class="tasks">
+                {% for task in tasks %}
+                    <div class="task {{ task.id }}">
+                        <div contenteditable>{{ task.content }}</div>
+                        <button class="save-task button"><i class="fa fa-save"></i> Save</button>
+                        <button class="complete-task success button"><i class="fa fa-check"></i> Complete</button>
+                        <span>{{ task.id }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

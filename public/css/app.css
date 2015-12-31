@@ -22,15 +22,29 @@
   .card span {
     display: none; }
 
-.update {
+.update-note {
   display: none; }
 
-.delete {
+.delete-note {
   display: none; }
 
 .cards {
   height: 30rem;
   overflow: auto; }
+
+.content {
+  height: 5rem;
+  font-size: 2rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  outline: none; }
+
+.task div {
+  display: inline-block; }
+
+.task span {
+  display: none; }
 
 .body {
   border: 1px solid #eee;

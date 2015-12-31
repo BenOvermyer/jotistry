@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="small-4 columns">
-            <button class="new large expanded button"><i class="fa fa-plus"></i> New Note</button>
+            <button class="new-note large expanded button"><i class="fa fa-plus"></i> New Note</button>
             <div class="cards">
                 {% for note in notes %}
                 <div class="card {{ note.id }}">
@@ -24,9 +24,9 @@
             <div class="title" contenteditable></div>
             <input type="hidden" class="id">
             <div class="body" contenteditable></div>
-            <button class="save button"><i class="fa fa-save"></i> Save</button>
-            <button class="update button"><i class="fa fa-save"></i> Update</button>
-            <button class="delete alert button"><i class="fa fa-remove"></i> Delete</button>
+            <button class="save-note button"><i class="fa fa-save"></i> Save</button>
+            <button class="update-note button"><i class="fa fa-save"></i> Update</button>
+            <button class="delete-note alert button"><i class="fa fa-remove"></i> Delete</button>
         </div>
     </div>
 {% endblock %}

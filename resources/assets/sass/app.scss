@@ -6,9 +6,9 @@
   background-color: #fff;
   height: 8rem;
   overflow: hidden;
-  -webkit-box-shadow: 3px 3px 5px -1px rgba(66,76,97,0.57);
-  -moz-box-shadow: 3px 3px 5px -1px rgba(66,76,97,0.57);
-  box-shadow: 3px 3px 5px -1px rgba(66,76,97,0.57);
+  -webkit-box-shadow: 3px 3px 5px -1px rgba(66, 76, 97, 0.57);
+  -moz-box-shadow: 3px 3px 5px -1px rgba(66, 76, 97, 0.57);
+  box-shadow: 3px 3px 5px -1px rgba(66, 76, 97, 0.57);
 
   &.active {
     background-color: #f1f1f1;
@@ -33,17 +33,35 @@
   }
 }
 
-.update {
+.update-note {
   display: none;
 }
 
-.delete {
+.delete-note {
   display: none;
 }
 
 .cards {
   height: 30rem;
   overflow: auto;
+}
+
+.content {
+  height: 5rem;
+  font-size: 2rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  outline: none;
+}
+
+.task {
+  div {
+    display: inline-block;
+  }
+  span {
+    display: none;
+  }
 }
 
 .body {

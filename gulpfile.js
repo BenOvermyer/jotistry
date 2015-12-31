@@ -14,8 +14,9 @@ var elixir = require('laravel-elixir');
 elixir(function (mix) {
     mix.sass('app.scss');
     mix.scripts([
-      'jquery-dateFormat.min.js',
-      'app.js',
-      'notes.js'
+        'jquery-dateFormat.min.js',
+        'app.js',
+        'notes.js',
+        'tasks.js',
     ]);
 });

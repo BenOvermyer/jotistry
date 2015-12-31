@@ -20,6 +20,7 @@
         <ul class="menu">
             {% if logged_in == true %}
                 <li><a href="{{ url_route( 'dashboard' ) }}"><i class="fa fa-line-chart"></i> Dashboard</a></li>
+                <li><a href="{{ url_route( 'tasks.index' ) }}"><i class="fa fa-tasks"></i> Tasks</a></li>
                 <li><a href="{{ url_route( 'notes.index' ) }}"><i class="fa fa-pencil"></i> Notes</a></li>
                 <li><a href="{{ url_route( 'doLogout' ) }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
             {% else %}

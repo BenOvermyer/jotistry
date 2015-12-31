@@ -11,6 +11,14 @@ Route::group(['middleware' => 'logged_in'], function () {
         Route::delete('/{id}', ['as' => 'notes.destroy', 'uses' => 'NotesController@destroy']);
     });
 
+    Route::group(['prefix' => 'tasks'], function () {
+        Route::get('/', ['as' => 'tasks.index', 'uses' => 'TasksController@index']);
+        Route::get('all', ['as' => 'tasks.all', 'uses' => 'TasksController@all']);
+        Route::post('/', ['as' => 'tasks.save', 'uses' => 'TasksController@save']);
+        Route::post('/{id}', ['as' => 'tasks.update', 'uses' => 'TasksController@update']);
+        Route::delete('/{id}', ['as' => 'tasks.destroy', 'uses' => 'TasksController@destroy']);
+    });
+
     // Authentication routes
     Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
     Route::post('auth/login', ['as' => 'doLogin', 'uses' => 'Auth\AuthController@postLogin']);

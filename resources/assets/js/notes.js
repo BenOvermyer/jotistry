@@ -6,16 +6,16 @@ $(document).ready(function () {
         }
     });
 
-    $('.new').click(function () {
+    $('.new-note').click(function () {
         $('.title').html('');
         $('.body').html('');
-        $('.update').hide();
-        $('.save').show();
+        $('.update-note').hide();
+        $('.save-note').show();
         $('.active').removeClass('active');
         $('.title').focus();
     });
 
-    $('.delete').click(function () {
+    $('.delete-note').click(function () {
         var noteId = $('.id').val();
 
         $.ajax({
@@ -25,8 +25,8 @@ $(document).ready(function () {
             $('.' + noteId).remove();
             $('.title').html('');
             $('.body').html('');
-            $('.update').hide();
-            $('.save').show();
+            $('.update-note').hide();
+            $('.save-note').show();
             $('.active').removeClass('active');
             $('.title').focus();
         });
@@ -35,15 +35,15 @@ $(document).ready(function () {
     $('.cards').delegate('.card', 'click', function(){
         $('.active').removeClass('active');
         $(this).addClass('active');
-        $('.save').hide();
-        $('.update').show();
-        $('.delete').show();
+        $('.save-note').hide();
+        $('.update-note').show();
+        $('.delete-note').show();
         $('.title').html($(this).children('h3').html());
         $('.body').html($(this).children('div').html());
         $('.id').val($(this).children('span').html());
     });
 
-    $('.save').click(function() {
+    $('.save-note').click(function() {
         var data = {
             'title': $('.title').html(),
             'body': $('.body').html()
@@ -53,13 +53,13 @@ $(document).ready(function () {
             var noteDate = new Date(response.updated_at);
             noteDate = $.format.date(noteDate, 'MMM D, yyyy h:mm p');
             $('.cards').prepend('<div class="card ' + response.id + ' active"><h3>' + response.title + '</h3><h4>Last Updated: ' + noteDate + '</h4><div>' + response.body + '</div><span>' + response.id + '</span>');
-            $('.save').hide();
-            $('.update').show();
+            $('.save-note').hide();
+            $('.update-note').show();
             $('.id').val(response.id);
         });
     });
 
-    $('.update').click(function() {
+    $('.update-note').click(function() {
         var data = {
             'title': $('.title').html(),
             'body': $('.body').html()
