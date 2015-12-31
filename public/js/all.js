@@ -83,6 +83,13 @@ $(document).ready(function () {
 });
 
 $(document).ready(function() {
+    $('.content').keydown(function(e) {
+        if (e.keyCode === 13) {
+            $('.new-task').click();
+            return false;
+        }
+    });
+
     $('.tasks').delegate( '.complete-task', 'click', function() {
         var id = $(this).siblings('span').html();
         var task = $(this).parent();
