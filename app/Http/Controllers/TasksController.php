@@ -23,7 +23,8 @@ class TasksController extends Controller
         return response()->json($tasks);
     }
 
-    public function byCategory( $id ) {
+    public function byCategory($id)
+    {
         $tasks = Task::where('task_category_id', $id)->where('is_completed', 0)->get();
 
         return response()->json($tasks);

@@ -12,7 +12,8 @@ class TaskCategory extends Model
         'title' => 'required',
     ];
 
-    public function tasks() {
+    public function tasks()
+    {
         return $this->hasMany('App\Task');
     }
 
