@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Note;
-use GrahamCampbell\GitHub\Facades\GitHub;
 use Cache;
+use GrahamCampbell\GitHub\Facades\GitHub;
 
 class HomeController extends Controller
 {
@@ -22,8 +22,8 @@ class HomeController extends Controller
             return GitHub::me()->issues();
         });
 
-        for ($i = 0; $i < sizeof($issues); $i++) {
-            if (isset( $issues[$i]["pull_request"] ) ) {
+        for ($i = 0; $i < count($issues); $i++) {
+            if (isset($issues[$i]['pull_request'])) {
                 $pullRequests[] = $issues[$i];
                 unset($issues[$i]);
             }
@@ -32,8 +32,8 @@ class HomeController extends Controller
         $issues = array_values($issues); // to normalize array keys
 
         return view('home.dashboard', ['pageTitle' => 'Dashboard'])->with([
-            'noteCount' => $noteCount,
-            'issues' => $issues,
+            'noteCount'    => $noteCount,
+            'issues'       => $issues,
             'pullRequests' => $pullRequests,
         ]);
     }
