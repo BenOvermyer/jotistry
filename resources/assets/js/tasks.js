@@ -73,6 +73,8 @@ $(document).ready(function() {
             }
         } );
 
+        $('.content').focus();
+
     });
 
     $('.tasks').delegate( '.save-task', 'click', function() {
