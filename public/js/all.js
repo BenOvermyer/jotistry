@@ -90,6 +90,13 @@ $(document).ready(function() {
         }
     });
 
+    $('.new-task-category-title').keydown(function(e) {
+        if (e.keyCode === 13) {
+            $('.new-task-category').click();
+            return false;
+        }
+    });
+
     $('.tasks').delegate( '.complete-task', 'click', function() {
         var id = $(this).siblings('span').html();
         var task = $(this).parent();
