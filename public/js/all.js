@@ -174,6 +174,8 @@ $(document).ready(function() {
             saveButton.hide();
         });
     });
+
+    $('.content').focus();
 });
 
 //# sourceMappingURL=all.js.map

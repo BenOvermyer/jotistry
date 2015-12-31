@@ -12,7 +12,7 @@
             <ol class="task-categories">
                 <li><div class="task-category active" data-task-category="0"><i class="fa fa-inbox"></i> Inbox</div></li>
                 {% for taskCategory in taskCategories %}
-                    <li><div class="task-category" data-task-category="{{ taskCategory.id }}"><i class="fa fa-list"></i> {{ taskCategory.title }}</div></li>
+                    <li><div class="task-category" data-task-category="{{ taskCategory.id }}"><i class="fa fa-list"></i> {{ taskCategory.title|raw }}</div></li>
                 {% endfor %}
             </ol>
             <div class="new-task-category-container">
@@ -29,7 +29,7 @@
                     <div class="task {{ task.id }}">
                         <button class="save-task button"><i class="fa fa-save"></i> Save</button>
                         <button class="complete-task"><i class="fa fa-square-o"></i></button>
-                        <div contenteditable>{{ task.content }}</div>
+                        <div contenteditable>{{ task.content|raw }}</div>
                         <span>{{ task.id }}</span>
                     </div>
                 {% endfor %}

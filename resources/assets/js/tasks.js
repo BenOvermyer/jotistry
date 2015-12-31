@@ -90,4 +90,6 @@ $(document).ready(function() {
             saveButton.hide();
         });
     });
+
+    $('.content').focus();
 });
