@@ -12,8 +12,13 @@ class Task extends Model
         'content' => 'required',
     ];
 
+    public function taskCategory() {
+        return $this->hasOne('App\TaskCategory');
+    }
+
     protected $fillable = [
         'content',
         'is_completed',
+        'task_category_id',
     ];
 }

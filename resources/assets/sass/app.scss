@@ -55,13 +55,63 @@
   outline: none;
 }
 
+.new-task {
+    outline: none;
+}
+
+.new-task-category-title {
+    height: 3rem;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+    outline: none;
+}
+
+.task-categories {
+    list-style: none;
+}
+
+.task-category {
+    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-bottom-right-radius: 7px;
+
+    &.active {
+        background-color: #f1f1f1;
+    }
+}
+
 .task {
-  div {
-    display: inline-block;
-  }
-  span {
-    display: none;
-  }
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    width: 100%;
+    height: 3rem;
+    &.ghost {
+        background-color: #f3f3f3;
+        color: #aaa;
+    }
+    div {
+        line-height: 3rem;
+        padding-left: 1rem;
+    }
+    button.complete-task {
+        float: left;
+        height: 3rem;
+        width: 3rem;
+        outline: none;
+    }
+    button.save-task {
+        float: right;
+        margin-top: 0.2rem;
+        display: none;
+    }
+    span {
+        display: none;
+    }
 }
 
 .body {

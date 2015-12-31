@@ -40,11 +40,52 @@
   border: 1px solid #eee;
   outline: none; }
 
-.task div {
-  display: inline-block; }
+.new-task {
+  outline: none; }
 
-.task span {
-  display: none; }
+.new-task-category-title {
+  height: 3rem;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+  outline: none; }
+
+.task-categories {
+  list-style: none; }
+
+.task-category {
+  margin-bottom: 0.25rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-bottom-right-radius: 7px; }
+  .task-category.active {
+    background-color: #f1f1f1; }
+
+.task {
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  width: 100%;
+  height: 3rem; }
+  .task.ghost {
+    background-color: #f3f3f3;
+    color: #aaa; }
+  .task div {
+    line-height: 3rem;
+    padding-left: 1rem; }
+  .task button.complete-task {
+    float: left;
+    height: 3rem;
+    width: 3rem;
+    outline: none; }
+  .task button.save-task {
+    float: right;
+    margin-top: 0.2rem;
+    display: none; }
+  .task span {
+    display: none; }
 
 .body {
   border: 1px solid #eee;

@@ -7,15 +7,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="small-12 columns">
+        <div class="small-4 columns">
+            <h2>Categories</h2>
+            <ol class="task-categories">
+                <li><div class="task-category active" data-task-category="0"><i class="fa fa-inbox"></i> Inbox</div></li>
+                {% for taskCategory in taskCategories %}
+                    <li><div class="task-category" data-task-category="{{ taskCategory.id }}"><i class="fa fa-list"></i> {{ taskCategory.title }}</div></li>
+                {% endfor %}
+            </ol>
+            <div class="new-task-category-container">
+                <div class="new-task-category-title" contenteditable></div>
+                <button class="new-task-category button"><i class="fa fa-plus"></i> New Category</button>
+            </div>
+        </div>
+        <div class="small-8 columns">
+            <h2 class="current-task-category">Inbox</h2>
             <div contenteditable class="content"></div>
             <button class="new-task large expanded button"><i class="fa fa-plus"></i> New Task</button>
             <div class="tasks">
                 {% for task in tasks %}
                     <div class="task {{ task.id }}">
-                        <div contenteditable>{{ task.content }}</div>
                         <button class="save-task button"><i class="fa fa-save"></i> Save</button>
-                        <button class="complete-task success button"><i class="fa fa-check"></i> Complete</button>
+                        <button class="complete-task"><i class="fa fa-square-o"></i></button>
+                        <div contenteditable>{{ task.content }}</div>
                         <span>{{ task.id }}</span>
                     </div>
                 {% endfor %}
