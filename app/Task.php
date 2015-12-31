@@ -12,7 +12,8 @@ class Task extends Model
         'content' => 'required',
     ];
 
-    public function taskCategory() {
+    public function taskCategory()
+    {
         return $this->hasOne('App\TaskCategory');
     }
 
