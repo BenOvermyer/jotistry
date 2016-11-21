@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\CacheGithubIssues::class,
         Commands\Inspire::class,
         Commands\UserGeneratorCommand::class,
     ];
@@ -26,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-            ->hourly();
+        $schedule->command('cache:githubissues')
+            ->everyThirtyMinutes();
     }
 }
