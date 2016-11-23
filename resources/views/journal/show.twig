@@ -1,0 +1,21 @@
+{% extends 'layout' %}
+
+{% block content %}
+<div class="row">
+    <div class="medium-12 columns">
+        <div class="journal-body">
+            {{ journalentry.body }}
+        </div>
+        <div class="journal-meta">
+            <ul>
+                <li><span><strong>Updated:</strong> {{ journalentry.updated_at|date('M jS, Y g:i a', timezone="America/Chicago") }}</span></li>
+                <li><span><strong>Created:</strong> {{ journalentry.created_at|date('M jS, Y g:i a', timezone="America/Chicago") }}</span></li>
+            </ul>
+        </div>
+        <div>
+            <a href="{{ url_route('journalentries.edit', { 'id': journalentry.id })}}" class="button"><i class="fa fa-edit"></i> Edit</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

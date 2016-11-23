@@ -1,0 +1,19 @@
+{% extends 'layout' %}
+
+{% block content %}
+    <div class="row">
+        <div class="small-12 columns">
+            <a href="{{ url_route('journalentries.create') }}" class="button"><i class="fa fa-pencil"></i> New Entry</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <h2>Entries</h2>
+            <ul class="entries">
+                {% for entry in entries %}
+                <li><a href="{{ url_route('journalentries.show', { 'id': entry.id }) }}">{{ entry.updated_at|date('M jS, Y g:i a', timezone="America/Chicago") }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

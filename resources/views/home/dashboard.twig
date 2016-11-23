@@ -2,13 +2,20 @@
 
 {% block content %}
     <div class="row">
-        <div class="small-6 columns">
+        <div class="small-12 columns">
             <h2>Stats</h2>
-            <label>Number of Notes: </label>
-            <span>{{ noteCount }}</span>
         </div>
-        <div class="small-6 columns">
-
+    </div>
+    <div class="row">
+        <div class="small-4 columns">
+            <h3>Notes:</h3>
+            <strong>{{ noteCount }}</strong>
+        </div>
+        <div class="small-4 columns">
+            <h3>Journal Entries:</h3>
+            <strong>{{ journalEntryCount }}</strong>
+        </div>
+        <div class="small-4 columns">
         </div>
     </div>
     <div class="row">

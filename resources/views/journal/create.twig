@@ -1,0 +1,15 @@
+{% extends 'layout' %}
+
+{% block content %}
+<div class="row">
+    <div class="medium-12 columns">
+        {{ form_model( journalentry, { 'route': [ 'journalentries.store' ], 'method': 'post' } ) }}
+        <label>
+            {{ form_textarea( 'body', '', { 'class': 'body' } ) }}
+        </label>
+        {{ form_submit( 'Save', { 'class': 'button', 'type': 'submit' } ) }}
+        {{ form_close() }}
+    </div>
+</div>
+
+{% endblock %}

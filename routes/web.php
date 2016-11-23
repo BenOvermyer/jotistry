@@ -13,6 +13,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{id}', ['as' => 'notes.destroy', 'uses' => 'NotesController@destroy']);
     });
 
+    Route::resource('journalentries', 'JournalEntryController');
+
     Route::group(['prefix' => 'tasks'], function () {
         Route::get('/bycategory/{id}', ['as' => 'tasks.bycategory', 'uses' => 'TasksController@byCategory']);
         Route::get('/categories', ['as' => 'task-categories.all', 'uses' => 'TaskCategoryController@all']);

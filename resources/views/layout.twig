@@ -4,8 +4,8 @@
     <title>{{ pageTitle }} | Kettle</title>
     <link rel="stylesheet" type="text/css"
           href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/css/foundation.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_asset( 'css/app.css' ) }}">
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
@@ -20,8 +20,9 @@
         <ul class="menu">
             {% if auth_check() %}
                 <li><a href="{{ url_route( 'dashboard' ) }}"><i class="fa fa-line-chart"></i> Dashboard</a></li>
+                <li><a href="{{ url_route( 'journalentries.index' ) }}"><i class="fa fa-book"></i> Journal</a></li>
                 <li><a href="{{ url_route( 'tasks.index' ) }}"><i class="fa fa-tasks"></i> Tasks</a></li>
-                <li><a href="{{ url_route( 'notes.index' ) }}"><i class="fa fa-pencil"></i> Notes</a></li>
+                <li><a href="{{ url_route( 'notes.index' ) }}"><i class="fa fa-sticky-note"></i> Notes</a></li>
                 <li>
 					<a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
 	                    <i class="fa fa-logout"></i> Logout
@@ -42,7 +43,7 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/js/foundation.min.js"></script>
-<script type="text/javascript" src="js/all.js"></script>
+<script type="text/javascript" src="{{ url_asset('js/all.js') }}"></script>
 {% block javascript %}{% endblock %}
 </body>
 </html>
