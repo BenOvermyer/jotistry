@@ -1,11 +1,4 @@
 $(document).ready(function () {
-    $('div[contenteditable]').keydown(function(e) {
-        if (e.keyCode === 13) {
-            document.execCommand('insertHTML', false, '<br>');
-            return false;
-        }
-    });
-
     $('.new-note').click(function () {
         $('.title').html('');
         $('.body').html('');
