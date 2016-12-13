@@ -20,14 +20,9 @@ class HomeController extends Controller
         $noteCount = Note::where('author_id', $userId)->count();
         $journalEntryCount = JournalEntry::where('author_id', $userId)->count();
 
-        $issues = githubapi()->issues();
-        $pullRequests = githubapi()->pullRequests();
-
         return view('home.dashboard', ['pageTitle' => 'Dashboard'])->with([
             'noteCount'    => $noteCount,
             'journalEntryCount' => $journalEntryCount,
-            'issues'       => $issues,
-            'pullRequests' => $pullRequests,
         ]);
     }
 }
