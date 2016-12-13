@@ -48,6 +48,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\GitHubAPIServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\WeatherServiceProvider::class,
         TwigBridge\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
