@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\JournalEntry;
 use App\Note;
+use Illuminate\Support\Facades\Auth;
 use Cache;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index', ['pageTitle' => 'Home']);
+        return redirect()->route( 'dashboard' );
     }
 
     public function dashboard()

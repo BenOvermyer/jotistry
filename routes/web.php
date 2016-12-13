@@ -1,8 +1,10 @@
 <?php
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+    Route::get('/home', 'HomeController@index');
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 
     Route::group(['prefix' => 'notes'], function () {
@@ -28,7 +30,3 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{id}', ['as' => 'tasks.destroy', 'uses' => 'TasksController@destroy']);
     });
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
