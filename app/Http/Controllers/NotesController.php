@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Note;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class NotesController extends Controller
 {
     public function index()
     {
-        $notes = Note::orderBy('updated_at', 'desc')->get();
+        $userId = Auth::user()->id;
+        $notes = Note::where('author_id', $userId)->orderBy('updated_at', 'desc')->get();
 
         return view('notes.index', ['pageTitle' => 'Notes'])->with(['notes' => $notes]);
     }
 
     public function all()
     {
-        $notes = Note::all();
+        $userId = Auth::user()->id;
+        $notes = Note::where('author_id', $userId)->get();
 
         return response()->json($notes);
     }
@@ -24,6 +27,7 @@ class NotesController extends Controller
     public function save()
     {
         $data = Input::all();
+        $data['author_id'] = Auth::user()->id;
 
         $note = Note::create($data);
 

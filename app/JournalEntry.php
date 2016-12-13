@@ -14,5 +14,11 @@ class JournalEntry extends Model
 
     protected $fillable = [
         'body',
+        'author_id',
     ];
+
+    public function author()
+    {
+        return $this->belongsTo( 'App\User' );
+    }
 }

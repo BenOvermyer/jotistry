@@ -21,5 +21,11 @@ class Task extends Model
         'content',
         'is_completed',
         'task_category_id',
+        'author_id',
     ];
+
+    public function author()
+    {
+        return $this->belongsTo( 'App\User' );
+    }
 }

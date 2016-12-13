@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\JournalEntry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Input;
 
 class JournalEntryController extends Controller
@@ -15,7 +16,8 @@ class JournalEntryController extends Controller
      */
     public function index()
     {
-        $journalEntries = JournalEntry::orderBy('updated_at', 'desc')->get();
+        $userId = Auth::user()->id;
+        $journalEntries = JournalEntry::where('author_id', $userId)->orderBy('updated_at', 'desc')->get();
 
         return view('journal.index', ['pageTitle' => 'Journal'])->with(['entries' => $journalEntries]);
     }
@@ -39,6 +41,7 @@ class JournalEntryController extends Controller
     public function store(Request $request)
     {
         $data = Input::all();
+        $data['author_id'] = Auth::user()->id;
 
         $journalEntry = JournalEntry::create($data);
 

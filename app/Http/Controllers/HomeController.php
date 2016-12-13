@@ -16,8 +16,9 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $noteCount = Note::count();
-        $journalEntryCount = JournalEntry::count();
+        $userId = Auth::user()->id;
+        $noteCount = Note::where('author_id', $userId)->count();
+        $journalEntryCount = JournalEntry::where('author_id', $userId)->count();
 
         $issues = githubapi()->issues();
         $pullRequests = githubapi()->pullRequests();

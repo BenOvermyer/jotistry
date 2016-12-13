@@ -35,4 +35,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function notes()
+    {
+        return $this->hasMany( 'App\Note', 'author_id' );
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany( 'App\Task', 'author_id' );
+    }
+
+    public function taskCategories()
+    {
+        return $this->hasMany( 'App\TaskCategory', 'author_id' );
+    }
+
+    public function journalEntries()
+    {
+        return $this->hasMany( 'App\JournalEntry', 'author_id' );
+    }
 }
