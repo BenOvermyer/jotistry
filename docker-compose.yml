@@ -21,19 +21,19 @@ services:
       - mysql
     environment:
       CACHE_DRIVER: redis
-      DB_DATABASE: kettle
+      DB_DATABASE: jotistry
       DB_HOST: mysql
-      DB_PASSWORD: kettle
-      DB_USERNAME: kettle
+      DB_PASSWORD: jotistry
+      DB_USERNAME: jotistry
       REDIS_HOST: redis
       SESSION_DRIVER: redis
   mysql:
     image: mysql:5.6
     environment:
-      MYSQL_DATABASE: kettle
-      MYSQL_PASSWORD: kettle
+      MYSQL_DATABASE: jotistry
+      MYSQL_PASSWORD: jotistry
       MYSQL_ROOT_PASSWORD:
-      MYSQL_USER: kettle
+      MYSQL_USER: jotistry
     ports:
         - "3306:3306"
   redis:

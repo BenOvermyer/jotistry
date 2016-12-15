@@ -1,8 +1,21 @@
-# Kettle Personal Dashboard
+# Jotistry
 
-A dashboard for a variety of random things. Not intended for anyone's use but my own, but go ahead if you feel like it.
+Organize and explore your life as it comes. Jotistry helps you keep on track
+and discover new truths about your life.
 
-Note: you'll need to make sure that GITHUB_TOKEN is filled out, since at present the GitHub integration is mandatory.
+## Current Features
+
+### The Journal
+
+Write about your life as it happens.
+
+### Tasks
+
+Keep tabs on what's on your plate.
+
+### Notes
+
+Remember things easier with Notes.
 
 ## Docker development instructions
 
@@ -13,6 +26,6 @@ For development bootstrapping:
 ```
 docker-compose up -d
 composer install
-docker exec kettledashboard_app_1 php artisan key:generate
-docker exec kettledashboard_app_1 php artisan migrate
+docker exec jotistry_app_1 php artisan key:generate
+docker exec jotistry_app_1 php artisan migrate
 ```

@@ -1,9 +1,12 @@
 {
-  "name": "benovermyer/kettle-dashboard",
-  "description": "Kettle, the personal dashboard.",
+  "name": "benovermyer/jotistry",
+  "description": "Jotistry, the personal dashboard.",
   "keywords": [
     "dashboard",
-    "kettle"
+    "jotistry",
+    "journal",
+    "tasks",
+    "notes"
   ],
   "license": "MIT",
   "type": "project",
