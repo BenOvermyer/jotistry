@@ -6,6 +6,7 @@ use App\JournalEntry;
 use App\Note;
 use App\TaskCategory;
 use App\Task;
+use App\User;
 use Illuminate\Console\Command;
 
 class UpdateStats extends Command
@@ -52,5 +53,8 @@ class UpdateStats extends Command
 
         $journalEntryCount = JournalEntry::count();
         datadog()->gauge('journal_entries.count', $journalEntryCount);
+
+        $userCount = User::count();
+        datadog()->gauge('users.count', $userCount);
     }
 }
