@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Inspire::class,
+        Commands\UpdateStats::class,
         Commands\UserGeneratorCommand::class,
     ];
 
@@ -26,5 +27,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('stats:update')->everyFiveMinutes();
     }
 }
