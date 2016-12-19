@@ -48,6 +48,7 @@ return [
         App\Providers\DataDogServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         TwigBridge\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
@@ -94,6 +95,7 @@ return [
         'Response'  => Illuminate\Support\Facades\Response::class,
         'Route'     => Illuminate\Support\Facades\Route::class,
         'Schema'    => Illuminate\Support\Facades\Schema::class,
+        'Sentry'    => Sentry\SentryLaravel\SentryFacade::class,
         'Session'   => Illuminate\Support\Facades\Session::class,
         'Storage'   => Illuminate\Support\Facades\Storage::class,
         'URL'       => Illuminate\Support\Facades\URL::class,
