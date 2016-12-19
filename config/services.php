@@ -35,8 +35,4 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'weather_underground' => [
-        'api_key' => env('WEATHER_UNDERGROUND_API_KEY'),
-    ],
-
 ];

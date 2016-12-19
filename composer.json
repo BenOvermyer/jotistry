@@ -15,7 +15,6 @@
     "laravel/framework": "5.3.*",
     "rcrowe/twigbridge": "0.9.x",
     "laravelcollective/html": "5.3.*",
-    "graham-campbell/github": "^4.2",
     "predis/predis": "^1.1",
     "guzzlehttp/guzzle": "^6.2"
   },
