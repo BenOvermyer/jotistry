@@ -42,15 +42,15 @@ class UpdateStats extends Command
     public function handle()
     {
         $taskCount = Task::count();
-        datadog()->gauge('tasks.count');
+        datadog()->gauge('tasks.count', $taskCount);
 
         $taskCategoryCount = TaskCategory::count();
-        datadog()->gauge('task_categories.count');
+        datadog()->gauge('task_categories.count', $taskCategoryCount);
 
         $noteCount = Note::count();
-        datadog()->gauge('notes.count');
+        datadog()->gauge('notes.count', $noteCount);
 
         $journalEntryCount = JournalEntry::count();
-        datadog()->gauge('journal_entries.count');
+        datadog()->gauge('journal_entries.count', $journalEntryCount);
     }
 }
