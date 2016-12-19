@@ -43,6 +43,7 @@ class TasksController extends Controller
         $task = Task::create($data);
 
         if ($task) {
+            datadog()->inc('tasks.new');
             return response()->json($task);
         } else {
             return response(500);
@@ -56,6 +57,7 @@ class TasksController extends Controller
         $data = Input::all();
 
         if ($task->update($data)) {
+            datadog()->inc('tasks.updates');
             return response()->json($task);
         } else {
             return response(500);
@@ -67,6 +69,7 @@ class TasksController extends Controller
         $task = Task::findOrFail($id);
 
         if ($task->delete()) {
+            datadog()->inc('tasks.deletes');
             return response(204);
         } else {
             return response(500);

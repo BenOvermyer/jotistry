@@ -32,6 +32,7 @@ class NotesController extends Controller
         $note = Note::create($data);
 
         if ($note) {
+            datadog()->inc('notes.new');
             return response()->json($note);
         } else {
             return response(500);
@@ -45,6 +46,7 @@ class NotesController extends Controller
         $data = Input::all();
 
         if ($note->update($data)) {
+            datadog()->inc('notes.updates');
             return response()->json($note);
         } else {
             return response(500);
@@ -56,6 +58,7 @@ class NotesController extends Controller
         $note = Note::findOrFail($id);
 
         if ($note->delete()) {
+            datadog()->inc('notes.deletes');
             return response(204);
         } else {
             return response(500);

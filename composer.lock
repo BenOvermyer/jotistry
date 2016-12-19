@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e45ab2e07466eac2fac4303d3e84943",
-    "content-hash": "45d1fa603e57dcd9f3f83c3dfca90a6f",
+    "hash": "4795c54c12c543baaaaf0f321f3c7077",
+    "content-hash": "2637f9208222bb8408c8f1ca4bebdde5",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -60,6 +60,55 @@
                 "preload"
             ],
             "time": "2016-09-16 12:50:15"
+        },
+        {
+            "name": "datadog/php-datadogstatsd",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataDog/php-datadogstatsd.git",
+                "reference": "90aee3687a43ba31e7d94b6c0a9ad9b127c5dd1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataDog/php-datadogstatsd/zipball/90aee3687a43ba31e7d94b6c0a9ad9b127c5dd1c",
+                "reference": "90aee3687a43ba31e7d94b6c0a9ad9b127c5dd1c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "lib-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "libraries/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Corley",
+                    "email": "anthroprose@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Datadog",
+                    "email": "dev@datadoghq.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is an extremely simple PHP datadogstatsd client",
+            "homepage": "https://www.datadoghq.com/",
+            "keywords": [
+                "DataDog",
+                "php"
+            ],
+            "time": "2016-05-24 12:56:33"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

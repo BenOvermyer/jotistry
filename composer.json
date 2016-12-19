@@ -16,7 +16,8 @@
     "rcrowe/twigbridge": "0.9.x",
     "laravelcollective/html": "5.3.*",
     "predis/predis": "^1.1",
-    "guzzlehttp/guzzle": "^6.2"
+    "guzzlehttp/guzzle": "^6.2",
+    "datadog/php-datadogstatsd": "^0.4.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

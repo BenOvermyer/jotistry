@@ -46,6 +46,7 @@ class JournalEntryController extends Controller
         $journalEntry = JournalEntry::create($data);
 
         if ($journalEntry) {
+            datadog()->inc('journal_entries.new');
             return redirect()->route('journalentries.index');
         } else {
             return response(500);
@@ -92,6 +93,7 @@ class JournalEntryController extends Controller
         $data = Input::all();
 
         if ($journalEntry->update($data)) {
+            datadog()->inc('journal_entries.updates');
             return redirect()->route('journalentries.index');
         } else {
             return response(500);
@@ -109,6 +111,7 @@ class JournalEntryController extends Controller
         $journalEntry = JournalEntry::findOrFail($id);
 
         if ($journalEntry->delete()) {
+            datadog()->inc('journal_entries.deletes');
             return redirect()->route('journalentries.index');
         } else {
             return response(500);

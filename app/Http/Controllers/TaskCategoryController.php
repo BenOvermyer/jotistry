@@ -24,6 +24,7 @@ class TaskCategoryController extends Controller
         $taskCategory = TaskCategory::create($data);
 
         if ($taskCategory) {
+            datadog()->inc('task_categories.new');
             return response()->json($taskCategory);
         } else {
             return response(500);
@@ -37,6 +38,7 @@ class TaskCategoryController extends Controller
         $data = Input::all();
 
         if ($taskCategory->update($data)) {
+            datadog()->inc('task_categories.updates');
             return response()->json($taskCategory);
         } else {
             return response(500);
@@ -48,6 +50,7 @@ class TaskCategoryController extends Controller
         $taskCategory = TaskCategory::findOrFail($id);
 
         if ($taskCategory->delete()) {
+            datadog()->inc('task_categories.deletes');
             return response(204);
         } else {
             return response(500);

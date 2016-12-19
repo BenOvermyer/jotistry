@@ -62,6 +62,8 @@ class UserGeneratorCommand extends Command
             $userData['password'] = Hash::make($userData['password']);
             User::create($userData);
 
+            datadog()->inc('users.new');
+
             $this->info('User created.');
         }
     }
