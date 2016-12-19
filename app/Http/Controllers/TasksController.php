@@ -38,6 +38,8 @@ class TasksController extends Controller
     {
         $data = Input::all();
 
+        $data['author_id'] = Auth::user()->id;
+
         $task = Task::create($data);
 
         if ($task) {
