@@ -8,6 +8,7 @@ $(document).ready(function() {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
     $('.new-note').click(function() {
+        var currentCard = null;
         $('.title').html('');
         $('.body').html('');
         $('.update-note').hide();
@@ -43,9 +44,10 @@ $(document).ready(function() {
         $('.save-note').hide();
         $('.update-note').show();
         $('.delete-note').show();
-        $('.title').html($(this).children('h3').html());
-        $('.body').html($(this).children('div').html());
-        $('.id').val($(this).children('span').html());
+
+        var cardId = $(this).children('span').html();
+
+        loadNote(cardId);
     });
 
     $('.save-note').click(function() {
@@ -62,7 +64,16 @@ $(document).ready(function() {
         }).done(function(note) {
             var noteDate = new Date(note.updated_at);
             noteDate = $.format.date(noteDate, 'MMM D, yyyy h:mm p');
-            $('.cards').prepend('<div class="card ' + note.id + ' active"><h3>' + note.title + '</h3><h4>Last Updated: ' + noteDate + '</h4><div>' + note.body + '</div><span>' + note.id + '</span>');
+            $.ajax({
+                url: 'notes/' + note.id,
+                method: "GET",
+                headers: {
+                    'Accept': 'text/html',
+                    'X_CSRF-TOKEN': csrfToken
+                }
+            }).done(function(noteHtml) {
+                $('.cards').prepend(noteHtml);
+            });
             $('.save-note').hide();
             $('.update-note').show();
             $('.id').val(note.id);
@@ -81,9 +92,33 @@ $(document).ready(function() {
                 'body': $('.body').html()
             }
         }).done(function(note) {
-            $('.cards > .' + note.id).html('<h3>' + note.title + '</h3><div>' + note.body + '</div><span>' + note.id + '</span>');
+            $.ajax({
+                url: 'notes/' + note.id,
+                method: "GET",
+                headers: {
+                    'Accept': 'text/html',
+                    'X_CSRF-TOKEN': csrfToken
+                }
+            }).done(function(noteHtml) {
+                $('.cards > .' + note.id ).replaceWith(noteHtml);
+            });
         });
     });
+
+    function loadNote(id) {
+        $.ajax({
+            url: 'notes/' + id,
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            }
+        }).done(function(note) {
+            $('.title').html(note.title);
+            $('.body').html(note.body);
+            $('.id').val(note.id);
+        })
+    }
 
 });
 
@@ -92,7 +127,7 @@ $(document).ready(function() {
 
     $('.content').keydown(function(e) {
         if (e.keyCode === 13) {
-            $('.new-task').click();
+            newTask();
             return false;
         }
     });
@@ -130,30 +165,6 @@ $(document).ready(function() {
 
     $('.tasks').on('keypress', 'div', function() {
         $(this).siblings('.save-task').show();
-    });
-
-    $('.new-task').click(function() {
-        var taskCategory = $('.active');
-        var taskCategoryId = taskCategory.attr('data-task-category');
-        var taskContent = $('.content').html();
-
-        var ajaxOptions = {
-            method: "POST",
-            url: "tasks",
-            data: {
-                content: taskContent,
-                task_category_id: taskCategoryId,
-                is_completed: 0
-            },
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            }
-        };
-
-        $.ajax(ajaxOptions).done(function(task) {
-            $('.tasks').append('<div class="task ' + task.id + '"><button class="save-task btn btn-primary"><i class="material-icons">save</i> Save</button> <a class="complete-task"><i class="material-icons">check_box_outline_blank</i></a><div contenteditable>' + task.content + '</div> <span>' + task.id + '</span>')
-            $('.content').html('');
-        });
     });
 
     $('.new-task-category').click(function() {
@@ -228,6 +239,39 @@ $(document).ready(function() {
             saveButton.hide();
         });
     });
+
+    function newTask() {
+        var taskCategory = $('.active');
+        var taskCategoryId = taskCategory.attr('data-task-category');
+        var taskContent = $('.content').html();
+        $('.content').html('');
+
+        var ajaxOptions = {
+            method: "POST",
+            url: "tasks",
+            data: {
+                content: taskContent,
+                task_category_id: taskCategoryId,
+                is_completed: 0
+            },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        };
+
+        $.ajax(ajaxOptions).done(function(task) {
+            $.ajax({
+                url: 'tasks/' + task.id,
+                method: "GET",
+                headers: {
+                    'Accept': 'text/html',
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            }).done(function(taskHtml){
+                $('.tasks').append(taskHtml);
+            });
+        });
+    }
 
     $('.content').focus();
 });

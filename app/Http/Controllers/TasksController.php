@@ -6,6 +6,7 @@ use App\Task;
 use App\TaskCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
@@ -16,6 +17,20 @@ class TasksController extends Controller
         $taskCategories = TaskCategory::where('author_id', $userId)->get();
 
         return view('tasks.index', ['pageTitle' => 'Tasks'])->with(['tasks' => $tasks, 'taskCategories' => $taskCategories]);
+    }
+
+    public function show($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+
+        if ($task) {
+            if ($request->header('Accept') == 'application/json'){
+                return response()->json($task);
+            }
+            return view('tasks.card')->with(['task' => $task]);
+        }
+
+        return response(404);
     }
 
     public function all()

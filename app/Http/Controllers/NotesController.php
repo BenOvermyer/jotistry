@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Note;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class NotesController extends Controller
 {
@@ -14,6 +15,20 @@ class NotesController extends Controller
         $notes = Note::where('author_id', $userId)->orderBy('updated_at', 'desc')->get();
 
         return view('notes.index', ['pageTitle' => 'Notes'])->with(['notes' => $notes]);
+    }
+
+    public function show($id, Request $request)
+    {
+        $note = Note::findOrFail($id);
+
+        if ($note) {
+            if ($request->header('Accept') == 'application/json'){
+                return response()->json($note);
+            }
+            return view('notes.card')->with(['note' => $note]);
+        }
+
+        return response(404);
     }
 
     public function all()

@@ -8,12 +8,9 @@
     </div>
     <div class="row">
         <div class="col">
-            <h2>Entries</h2>
-            <ul class="entries">
-                {% for entry in entries %}
-                <li><a href="{{ url_route('journalentries.show', { 'id': entry.id }) }}">{{ entry.updated_at|date('M jS, Y g:i a', timezone="America/Chicago") }}</a></li>
-                {% endfor %}
-            </ul>
+            {% for entry in entries %}
+                {% include 'journal.card' %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

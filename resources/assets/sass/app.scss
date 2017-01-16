@@ -1,10 +1,7 @@
 .card {
     border: 1px solid #eee;
-    color: #aaa;
-    padding: 1rem;
     margin: 1rem;
     background-color: #fff;
-    height: 8rem;
     overflow: hidden;
     -webkit-box-shadow: 3px 3px 5px -1px rgba(66, 76, 97, 0.57);
     -moz-box-shadow: 3px 3px 5px -1px rgba(66, 76, 97, 0.57);
@@ -16,16 +13,6 @@
         position: relative;
         top: -2px;
         left: -2px;
-    }
-
-    h3 {
-        color: #777;
-        font-size: 1.25rem;
-    }
-
-    h4 {
-        font-size: 0.75rem;
-        font-style: italic;
     }
 
     span {
@@ -52,6 +39,7 @@
     padding: 0.75rem;
     margin-bottom: 1rem;
     border: 1px solid #eee;
+    border-radius: 7px;
     outline: none;
 }
 
@@ -76,8 +64,6 @@
     margin-bottom: 0.25rem;
     padding: 0.5rem 0.5rem 0.5rem 1rem;
     background-color: #fff;
-    border: 1px solid #eee;
-    border-bottom-right-radius: 7px;
 
     &.active {
         background-color: #f1f1f1;
@@ -85,8 +71,10 @@
 }
 
 .task {
-    border: 1px solid #efefef;
+    background-color: #fafaff;
+    border: 1px solid #efefff;
     border-radius: 5px;
+    margin-bottom: 1px;
     width: 100%;
     height: 3rem;
 

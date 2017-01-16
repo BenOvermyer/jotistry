@@ -2,6 +2,7 @@ $(document).ready(function() {
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
     $('.new-note').click(function() {
+        var currentCard = null;
         $('.title').html('');
         $('.body').html('');
         $('.update-note').hide();
@@ -37,9 +38,10 @@ $(document).ready(function() {
         $('.save-note').hide();
         $('.update-note').show();
         $('.delete-note').show();
-        $('.title').html($(this).children('h3').html());
-        $('.body').html($(this).children('div').html());
-        $('.id').val($(this).children('span').html());
+
+        var cardId = $(this).children('span').html();
+
+        loadNote(cardId);
     });
 
     $('.save-note').click(function() {
@@ -56,7 +58,16 @@ $(document).ready(function() {
         }).done(function(note) {
             var noteDate = new Date(note.updated_at);
             noteDate = $.format.date(noteDate, 'MMM D, yyyy h:mm p');
-            $('.cards').prepend('<div class="card ' + note.id + ' active"><h3>' + note.title + '</h3><h4>Last Updated: ' + noteDate + '</h4><div>' + note.body + '</div><span>' + note.id + '</span>');
+            $.ajax({
+                url: 'notes/' + note.id,
+                method: "GET",
+                headers: {
+                    'Accept': 'text/html',
+                    'X_CSRF-TOKEN': csrfToken
+                }
+            }).done(function(noteHtml) {
+                $('.cards').prepend(noteHtml);
+            });
             $('.save-note').hide();
             $('.update-note').show();
             $('.id').val(note.id);
@@ -75,8 +86,32 @@ $(document).ready(function() {
                 'body': $('.body').html()
             }
         }).done(function(note) {
-            $('.cards > .' + note.id).html('<h3>' + note.title + '</h3><div>' + note.body + '</div><span>' + note.id + '</span>');
+            $.ajax({
+                url: 'notes/' + note.id,
+                method: "GET",
+                headers: {
+                    'Accept': 'text/html',
+                    'X_CSRF-TOKEN': csrfToken
+                }
+            }).done(function(noteHtml) {
+                $('.cards > .' + note.id ).replaceWith(noteHtml);
+            });
         });
     });
+
+    function loadNote(id) {
+        $.ajax({
+            url: 'notes/' + id,
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            }
+        }).done(function(note) {
+            $('.title').html(note.title);
+            $('.body').html(note.body);
+            $('.id').val(note.id);
+        })
+    }
 
 });

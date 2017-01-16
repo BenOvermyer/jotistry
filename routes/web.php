@@ -9,6 +9,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'notes'], function () {
         Route::get('/', ['as' => 'notes.index', 'uses' => 'NotesController@index']);
+        Route::get('/{id}', [ 'as' => 'notes.show', 'uses' => 'NotesController@show' ]);
         Route::get('all', ['as' => 'notes.all', 'uses' => 'NotesController@all']);
         Route::post('/', ['as' => 'notes.save', 'uses' => 'NotesController@save']);
         Route::post('/{id}', ['as' => 'notes.update', 'uses' => 'NotesController@update']);
@@ -24,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/categories/{id}', ['as' => 'task-categories.update', 'uses' => 'TaskCategoryController@update']);
         Route::delete('/categories/{id}', ['as' => 'task-categories.destroy', 'uses' => 'TaskCategoryController@destroy']);
         Route::get('/', ['as' => 'tasks.index', 'uses' => 'TasksController@index']);
+        Route::get('/{id}', [ 'as' => 'tasks.show', 'uses' => 'TasksController@show' ]);
         Route::get('all', ['as' => 'tasks.all', 'uses' => 'TasksController@all']);
         Route::post('/', ['as' => 'tasks.save', 'uses' => 'TasksController@save']);
         Route::post('/{id}', ['as' => 'tasks.update', 'uses' => 'TasksController@update']);
