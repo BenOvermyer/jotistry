@@ -3,6 +3,8 @@ FROM php:7-fpm
 RUN apt-get update && apt-get install -y libmcrypt-dev \
     && docker-php-ext-install mcrypt
 
+RUN docker-php-ext-install sockets
+
 RUN apt-get install -y mysql-client \
     && docker-php-ext-install pdo_mysql
 
