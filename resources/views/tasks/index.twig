@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-3">
             <h2>Categories</h2>
             <ol class="task-categories">
                 <li><div class="task-category active" data-task-category="0"><i class="material-icons">inbox</i> <span>Inbox</span></div></li>
@@ -17,17 +17,17 @@
             </ol>
             <div class="new-task-category-container">
                 <div class="new-task-category-title" contenteditable></div>
-                <button class="new-task-category btn btn-primary">New Category</button>
+                <button class="new-task-category btn btn-primary"><i class="material-icons">playlist_add</i> New Category</button>
             </div>
         </div>
         <div class="col">
             <h2 class="current-task-category">Inbox</h2>
             <div contenteditable class="content"></div>
-            <button class="new-task btn btn-primary btn-lg">New Task</button>
+            <button class="new-task btn btn-primary btn-lg"><i class="material-icons">add</i> New Task</button>
             <div class="tasks">
                 {% for task in tasks %}
                     <div class="task {{ task.id }}">
-                        <button class="save-task btn btn-primary">Save</button>
+                        <button class="save-task btn btn-primary"><i class="material-icons">save</i> Save</button>
                         <a class="complete-task"><i class="material-icons">check_box_outline_blank</i></a>
                         <div contenteditable>{{ task.content|raw }}</div>
                         <span>{{ task.id }}</span>
