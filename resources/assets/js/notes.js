@@ -1,19 +1,25 @@
-$(document).ready(function () {
-    $('.new-note').click(function () {
+$(document).ready(function() {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    $('.new-note').click(function() {
         $('.title').html('');
         $('.body').html('');
         $('.update-note').hide();
+        $('.delete-note').hide();
         $('.save-note').show();
         $('.active').removeClass('active');
         $('.title').focus();
     });
 
-    $('.delete-note').click(function () {
+    $('.delete-note').click(function() {
         var noteId = $('.id').val();
 
         $.ajax({
             url: '/notes/' + noteId,
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         }).done(function(response) {
             $('.' + noteId).remove();
             $('.title').html('');
@@ -25,7 +31,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.cards').delegate('.card', 'click', function(){
+    $('.cards').on('click', '.card', function() {
         $('.active').removeClass('active');
         $(this).addClass('active');
         $('.save-note').hide();
@@ -37,29 +43,39 @@ $(document).ready(function () {
     });
 
     $('.save-note').click(function() {
-        var data = {
-            'title': $('.title').html(),
-            'body': $('.body').html()
-        };
-
-        $.post('/notes', data, function(response) {
-            var noteDate = new Date(response.updated_at);
+        $.ajax({
+            url: 'notes',
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            data: {
+                'title': $('.title').html(),
+                'body': $('.body').html()
+            }
+        }).done(function(note) {
+            var noteDate = new Date(note.updated_at);
             noteDate = $.format.date(noteDate, 'MMM D, yyyy h:mm p');
-            $('.cards').prepend('<div class="card ' + response.id + ' active"><h3>' + response.title + '</h3><h4>Last Updated: ' + noteDate + '</h4><div>' + response.body + '</div><span>' + response.id + '</span>');
+            $('.cards').prepend('<div class="card ' + note.id + ' active"><h3>' + note.title + '</h3><h4>Last Updated: ' + noteDate + '</h4><div>' + note.body + '</div><span>' + note.id + '</span>');
             $('.save-note').hide();
             $('.update-note').show();
-            $('.id').val(response.id);
+            $('.id').val(note.id);
         });
     });
 
     $('.update-note').click(function() {
-        var data = {
-            'title': $('.title').html(),
-            'body': $('.body').html()
-        };
-
-        $.post('/notes/' + $('.id').val(), data, function(response) {
-            $('.cards > .' + response.id).html('<h3>' + response.title + '</h3><div>' + response.body + '</div><span>' + response.id + '</span>');
+        $.ajax({
+            url: 'notes/' + $('.id').val(),
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            data: {
+                'title': $('.title').html(),
+                'body': $('.body').html()
+            }
+        }).done(function(note) {
+            $('.cards > .' + note.id).html('<h3>' + note.title + '</h3><div>' + note.body + '</div><span>' + note.id + '</span>');
         });
     });
 

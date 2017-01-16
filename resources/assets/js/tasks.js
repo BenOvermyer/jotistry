@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
     $('.content').keydown(function(e) {
         if (e.keyCode === 13) {
             $('.new-task').click();
@@ -13,82 +15,127 @@ $(document).ready(function() {
         }
     });
 
-    $('.tasks').delegate( '.complete-task', 'click', function() {
+    $('.tasks').on('click', '.complete-task', function() {
         var id = $(this).siblings('span').html();
         var task = $(this).parent();
         task.addClass('ghost');
-        task.children('.complete-task').children('i').removeClass('fa-square-o').addClass('fa-check-square-o');
+        task.children('.complete-task').children('i').html('check_box');
 
-        var data = {
-            'content': $(this).siblings('div').html(),
-            'is_completed': 1
+        var ajaxOptions = {
+            url: 'tasks/' + id,
+            method: 'POST',
+            data: {
+                'content': $(this).siblings('div').html(),
+                'is_completed': 1
+            },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            dataType: 'json'
         };
 
-        $.post( 'tasks/' + id, data, function( response ) {
+        $.ajax(ajaxOptions).done(function(response) {
             task.remove();
         });
     });
 
-    $('.tasks').delegate( 'div', 'keypress', function() {
+    $('.tasks').on('keypress', 'div', function() {
         $(this).siblings('.save-task').show();
     });
 
     $('.new-task').click(function() {
         var taskCategory = $('.active');
-        var data = {
-            'content': $('.content').html(),
-            'task_category_id': taskCategory.attr('data-task-category'),
-            'is_completed': 0
+        var taskCategoryId = taskCategory.attr('data-task-category');
+        var taskContent = $('.content').html();
+
+        var ajaxOptions = {
+            method: "POST",
+            url: "tasks",
+            data: {
+                content: taskContent,
+                task_category_id: taskCategoryId,
+                is_completed: 0
+            },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         };
 
-        $.post( 'tasks', data, function( response ) {
-            $('.tasks').append( '<div class="task ' + response.id + '"><button class="save-task button"><i class="fa fa-save"> Save</i></button> <button class="complete-task"><i class="fa fa-square-o"></i></button><div contenteditable>' + response.content + '</div> <span>' + response.id + '</span>')
+        $.ajax(ajaxOptions).done(function(task) {
+            $('.tasks').append('<div class="task ' + task.id + '"><button class="save-task btn btn-primary"><i class="material-icons">save</i> Save</button> <a class="complete-task"><i class="material-icons">check_box_outline_blank</i></a><div contenteditable>' + task.content + '</div> <span>' + task.id + '</span>')
             $('.content').html('');
         });
     });
 
     $('.new-task-category').click(function() {
-        var data = {
-            'title': $('.new-task-category-title').html()
+        var categoryTitle = $('.new-task-category-title').html();
+
+        var ajaxOptions = {
+            method: 'POST',
+            url: 'tasks/categories',
+            data: {
+                'title': categoryTitle
+            },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
         };
 
-        $.post( 'tasks/categories', data, function( response ) {
-            $('.task-categories').append( '<li><div class="task-category" data-task-category="' + response.id + '"><i class="fa fa-list"></i> ' + response.title + '</li>');
+        $.ajax(ajaxOptions).done(function(taskCategory) {
+            $('.task-categories').append('<li><div class="task-category" data-task-category="' + taskCategory.id + '"><i class="material-icons">view_list</i> <span>' + taskCategory.title + '</span></li>');
             $('.new-task-category-title').html('');
         });
     });
 
-    $('.task-categories').delegate( '.task-category', 'click', function() {
+    $('.task-categories').on('click', '.task-category', function() {
         var taskCategory = $(this);
         $('.task-category').removeClass('active');
         taskCategory.addClass('active');
-        $('.current-task-category').html(taskCategory.text());
+        var taskCategoryTitle = taskCategory.children('span').text();
+        $('.current-task-category').html(taskCategoryTitle);
         $('.task').remove();
 
         categoryId = taskCategory.attr('data-task-category');
 
-        $.get( 'tasks/bycategory/' + categoryId, function( response ) {
-            for (var i=0, len = response.length; i < len; i++) {
-                $('.tasks').append( '<div class="task ' + response[i].id + '"><button class="save-task button"><i class="fa fa-save"> Save</i></button> <button class="complete-task"><i class="fa fa-square-o"></i></button><div contenteditable>' + response[i].content + '</div> <span>' + response[i].id + '</span>')
+        var ajaxOptions = {
+            url: 'tasks/bycategory/' + categoryId,
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            dataType: 'json'
+        }
+
+        $.ajax(ajaxOptions).done(function(response) {
+            for (var i = 0, len = response.length; i < len; i++) {
+                $('.tasks').append('<div class="task ' + response[i].id + '"><button class="save-task btn btn-primary"><i class="material-icons">save</i> Save</button> <a class="complete-task"><i class="material-icons">check_box_outline_blank</i></a><div contenteditable>' + response[i].content + '</div> <span>' + response[i].id + '</span>')
             }
-        } );
+        });
 
         $('.content').focus();
 
     });
 
-    $('.tasks').delegate( '.save-task', 'click', function() {
+    $('.tasks').on('click', '.save-task', function() {
         var id = $(this).siblings('span').html();
         var saveButton = $(this);
         saveButton.attr('disabled', 'disabled');
         saveButton.addClass('disabled');
 
-        var data = {
-            'content': $(this).siblings('div').html(),
-            'is_completed': 0
-        };
+        var ajaxOptions = {
+            url: 'tasks/' + id,
+            method: 'POST',
+            data: {
+                'content': $(this).siblings('div').html(),
+                'is_completed': 0
+            },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            dataType: 'json'
+        }
 
-        $.post( 'tasks/' + id, data, function( response ) {
+        $.ajax(ajaxOptions).done(function(response) {
             saveButton.hide();
         });
     });

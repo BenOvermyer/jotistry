@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="row">
-    <div class="medium-12 columns">
+    <div class="col">
         {{ form_model( journalentry, { 'route': [ 'journalentries.store' ], 'method': 'post' } ) }}
-        <label>
-            {{ form_textarea( 'body', '', { 'class': 'body' } ) }}
-        </label>
-        {{ form_submit( 'Save', { 'class': 'button', 'type': 'submit' } ) }}
+        <div class="form-group">
+            {{ form_textarea( 'body', '', { 'class': 'body form-control' } ) }}
+        </div>
+        {{ form_submit( 'Save', { 'class': 'btn btn-primary btn-lg', 'type': 'submit' } ) }}
         {{ form_close() }}
     </div>
 </div>

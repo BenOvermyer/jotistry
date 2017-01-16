@@ -56,8 +56,7 @@
 
 .task-category {
   margin-bottom: 0.25rem;
-  padding: 0.5rem;
-  padding-left: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   background-color: #fff;
   border: 1px solid #eee;
   border-bottom-right-radius: 7px; }
@@ -75,11 +74,16 @@
   .task div {
     line-height: 3rem;
     padding-left: 1rem; }
-  .task button.complete-task {
+  .task a.complete-task {
+    display: block;
     float: left;
     height: 3rem;
     width: 3rem;
-    outline: none; }
+    outline: none;
+    background: none; }
+    .task a.complete-task i {
+      line-height: 3rem;
+      margin-left: 0.75rem; }
   .task button.save-task {
     float: right;
     margin-top: 0.2rem;
@@ -123,5 +127,8 @@
   outline: none;
   margin-bottom: 1rem;
   padding: 0.5rem; }
+
+.material-icons {
+  vertical-align: bottom; }
 
 /*# sourceMappingURL=app.css.map */

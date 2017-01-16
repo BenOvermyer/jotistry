@@ -2,13 +2,13 @@
 
 {% block content %}
     <div class="row">
-        <div class="small-12 columns">
+        <div class="col">
             <p></p>
         </div>
     </div>
     <div class="row">
-        <div class="small-4 columns">
-            <button class="new-note large expanded button"><i class="fa fa-plus"></i> New Note</button>
+        <div class="col">
+            <button class="new-note btn btn-primary btn-lg"><i class="fa fa-plus"></i> New Note</button>
             <div class="cards">
                 {% for note in notes %}
                 <div class="card {{ note.id }}">
@@ -20,13 +20,13 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="small-8 columns">
+        <div class="col">
             <div class="title" contenteditable></div>
             <input type="hidden" class="id">
             <div class="body" contenteditable></div>
-            <button class="save-note button"><i class="fa fa-save"></i> Save</button>
-            <button class="update-note button"><i class="fa fa-save"></i> Update</button>
-            <button class="delete-note alert button"><i class="fa fa-remove"></i> Delete</button>
+            <button class="save-note btn btn-primary"><i class="material-icons">save</i> Save</button>
+            <button class="update-note btn btn-info"><i class="material-icons">save</i> Update</button>
+            <button class="delete-note btn btn-danger"><i class="material-icons">delete</i> Delete</button>
         </div>
     </div>
 {% endblock %}

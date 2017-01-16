@@ -2,16 +2,20 @@
 
 {% block content %}
   <div class="row">
-    <div class="small-6 small-offset-3 columns">
+    <div class="col">
       {{ form_open( { route: 'login', required : 'required' } ) }}
-      {{ form_label( 'email', 'Email' ) }}
-      {{ form_email( 'email', input_old( 'email' ), { required : 'required' } ) }}
-      {{ form_label( 'password', 'Password' ) }}
-      {{ form_password( 'password' , { required : 'required' } ) }}
+      <div class="form-group">
+          {{ form_label( 'email', 'Email' ) }}
+          {{ form_email( 'email', input_old( 'email' ), { required : 'required', class: 'form-control' } ) }}
+      </div>
+      <div class="form-group">
+          {{ form_label( 'password', 'Password' ) }}
+          {{ form_password( 'password' , { required : 'required', class: 'form-control' } ) }}
+      </div>
       {% if redirect %}
           {{ form_hidden( 'redirect_to' , redirect ) }}
       {% endif %}
-      {{ form_submit( 'Log In', { class : 'button' } ) }}
+      {{ form_submit( 'Log In', { class : 'btn btn-primary btn-lg' } ) }}
       {{ form_close() }}
     </div>
   </div>

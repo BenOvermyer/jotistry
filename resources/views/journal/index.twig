@@ -2,12 +2,12 @@
 
 {% block content %}
     <div class="row">
-        <div class="small-12 columns">
-            <a href="{{ url_route('journalentries.create') }}" class="button"><i class="fa fa-pencil"></i> New Entry</a>
+        <div class="col">
+            <a href="{{ url_route('journalentries.create') }}" class="btn btn-primary">New Entry</a>
         </div>
     </div>
     <div class="row">
-        <div class="small-12 columns">
+        <div class="col">
             <h2>Entries</h2>
             <ul class="entries">
                 {% for entry in entries %}
