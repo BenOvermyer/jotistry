@@ -17,8 +17,8 @@ class User extends Authenticatable
     protected $table = 'users';
 
     public static $rules = [
-        'email'    => 'required|email|unique:users,email,{id}',
-        'name'     => 'required',
+        'email' => 'required|email|unique:users,email,{id}',
+        'name' => 'required',
         'password' => 'required|confirmed',
     ];
 
@@ -34,7 +34,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [ 'password', 'remember_token', 'api_token' ];
 
     public function notes()
     {

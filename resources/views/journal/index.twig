@@ -1,13 +1,13 @@
 {% extends 'layout' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col">
-            <a href="{{ url_route('journalentries.create') }}" class="btn btn-primary"><i class="material-icons">add_circle</i> New Entry</a>
+    <div class="columns">
+        <div class="column">
+            <a href="{{ url_route('journalentries.create') }}" class="button is-primary"><span class="icon is-small"><i class="fa fa-plus"></i></span> New Entry</a>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
+    <div class="columns">
+        <div class="column">
             {% for entry in entries %}
                 {% include 'journal.card' %}
             {% endfor %}

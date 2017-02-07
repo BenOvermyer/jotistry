@@ -39,32 +39,33 @@ class UserGeneratorCommand extends Command
     public function fire()
     {
         $userData = [];
-        $userData['email'] = $this->ask('What is the email for the user?');
-        $userData['name'] = $this->ask('Name?');
-        $userData['password'] = $this->secret('What is the password for the user?');
-        $userData['password_confirmation'] = $this->secret('Confirm password');
+        $userData[ 'email' ] = $this->ask( 'What is the email for the user?' );
+        $userData[ 'name' ] = $this->ask( 'Name?' );
+        $userData[ 'password' ] = $this->secret( 'What is the password for the user?' );
+        $userData[ 'password_confirmation' ] = $this->secret( 'Confirm password' );
+        $userData[ 'api_token' ] = str_random( 60 );
 
-        $validator = Validator::make($userData, User::$rules);
+        $validator = Validator::make( $userData, User::$rules );
 
-        if ($validator->fails()) {
+        if ( $validator->fails() ) {
             $messages = $validator->errors()->getMessages();
-            foreach ($messages as $message) {
-                if (isset($message[0])) {
-                    $this->error($message[0]);
+            foreach ( $messages as $message ) {
+                if ( isset( $message[ 0 ] ) ) {
+                    $this->error( $message[ 0 ] );
                     echo "\n";
                 }
             }
-            $this->info('Try running '.$this->name.' again.');
+            $this->info( 'Try running ' . $this->name . ' again.' );
         } else {
-            if (count(User::all()) == 0) {
-                $userData['owner'] = true;
+            if ( count( User::all() ) == 0 ) {
+                $userData[ 'owner' ] = true;
             }
-            $userData['password'] = Hash::make($userData['password']);
-            User::create($userData);
+            $userData[ 'password' ] = Hash::make( $userData[ 'password' ] );
+            User::create( $userData );
 
-            datadog()->inc('users.new');
+            datadog()->inc( 'users.new' );
 
-            $this->info('User created.');
+            $this->info( 'User created.' );
         }
     }
 }

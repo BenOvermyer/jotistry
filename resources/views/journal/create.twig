@@ -1,13 +1,13 @@
 {% extends 'layout' %}
 
 {% block content %}
-<div class="row">
-    <div class="col">
+<div class="columns">
+    <div class="column">
         {{ form_model( journalentry, { 'route': [ 'journalentries.store' ], 'method': 'post' } ) }}
-        <div class="form-group">
-            {{ form_textarea( 'body', '', { 'class': 'body form-control' } ) }}
-        </div>
-        {{ form_submit( 'Save', { 'class': 'btn btn-primary btn-lg', 'type': 'submit' } ) }}
+        <p class="control">
+            {{ form_textarea( 'body', '', { 'class': 'textarea journal-body-edit' } ) }}
+        </p>
+        {{ form_submit( 'Save', { 'class': 'button is-primary is-large', 'type': 'submit' } ) }}
         {{ form_close() }}
     </div>
 </div>

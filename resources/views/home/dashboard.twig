@@ -1,23 +1,29 @@
 {% extends 'layout' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col">
-            <h2>Stats</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h3>Notes:</h3>
-            <strong>{{ noteCount }}</strong>
-        </div>
-        <div class="col">
-            <h3>Journal Entries:</h3>
-            <strong>{{ journalEntryCount }}</strong>
-        </div>
-        <div class="col">
-            <h3>Tasks</h3>
-            <strong>{{ taskCount }}</strong>
+    <div class="columns">
+        <div class="column">
+            <h2 class="title is-2">Dashboard</h2>
+            <div class="level">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Notes</p>
+                        <p class="title">{{ noteCount }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Journal Entries</p>
+                        <p class="title">{{ journalEntryCount }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Tasks</p>
+                        <p class="title">{{ taskCount }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -1,8 +1,0 @@
-<div class="card {{ note.id }}">
-    <div class="card-block">
-        <h4 class="card-title">{{ note.title|raw }}</h4>
-        <h6 class="card-subtitle text-muted">{{ note.updated_at|date('M jS, Y g:i a', timezone="America/Chicago") }}</h6>
-        <div class="card-text">{{ note.body|striptags|slice(0,144) }}...</div>
-    </div>
-    <span>{{ note.id }}</span>
-</div>

@@ -1,8 +1,8 @@
 {% extends 'layout' %}
 
 {% block content %}
-<div class="row">
-    <div class="col">
+<div class="columns">
+    <div class="column">
         <div class="journal-body">
             {{ journalentry.body }}
         </div>
@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <a href="{{ url_route('journalentries.edit', { 'id': journalentry.id })}}" class="btn btn-primary">Edit</a>
+            <a href="{{ url_route('journalentries.edit', { 'id': journalentry.id })}}" class="button is-primary">Edit</a>
         </div>
     </div>
 </div>

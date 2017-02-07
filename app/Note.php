@@ -10,7 +10,7 @@ class Note extends Model
 
     public static $rules = [
         'title' => 'required',
-        'body'  => 'required',
+        'body' => 'required',
     ];
 
     protected $fillable = [
@@ -19,8 +19,28 @@ class Note extends Model
         'author_id',
     ];
 
+    protected $appends = [
+        'summary',
+    ];
+
     public function author()
     {
         return $this->belongsTo( 'App\User' );
+    }
+
+    public function getBodyAttribute( $value )
+    {
+        return strip_tags( $value );
+    }
+
+    public function getSummaryAttribute()
+    {
+        $summary = strip_tags( $this->body );
+
+        if ( strlen( $summary ) > 144 ) {
+            $summary = substr( $summary, 0, 144 ) . '...';
+        }
+
+        return $summary;
     }
 }
