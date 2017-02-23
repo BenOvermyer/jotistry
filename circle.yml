@@ -1,0 +1,11 @@
+machine:
+  php:
+    version: 7.0.11
+  nodejs:
+    version: 6.1.0
+dependencies:
+  pre:
+    - cp .env.circleci .env
+  post:
+    - php artisan key:generate
+    - php artisan migrate
