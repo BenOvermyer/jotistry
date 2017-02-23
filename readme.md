@@ -1,5 +1,7 @@
 # Jotistry
 
+[![CircleCI](https://circleci.com/gh/BenOvermyer/jotistry.svg?style=svg)](https://circleci.com/gh/BenOvermyer/jotistry)
+
 Organize and explore your life as it comes. Jotistry helps you keep on track
 and discover new truths about your life.
 
