@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.1-node-browsers
+    working_directory: ~/jotistry
+    steps:
+      - checkout
+      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
+      - run: sudo docker-php-ext-install zip
+      - run: sudo composer self-update
+      - run: composer install -n --prefer-dist
+      - run: npm install
+      - run: touch storage/testing.sqlite 
+      - run: php artisan key:generate --env=testing 
+      - run: php artisan migrate --env=testing --database=sqlite_testing --force

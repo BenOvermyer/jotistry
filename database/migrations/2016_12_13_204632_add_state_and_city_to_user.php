@@ -14,8 +14,8 @@ class AddStateAndCityToUser extends Migration
     public function up()
     {
         Schema::table( 'users', function ( Blueprint $table ) {
-            $table->string( 'state' );
-            $table->string( 'city' );
+            $table->string( 'state' )->default('');
+            $table->string( 'city' )->default('');
         });
     }
 

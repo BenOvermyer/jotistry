@@ -14,22 +14,22 @@ class AddAuthorToContent extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->integer('author_id')->unsigned();
+            $table->integer('author_id')->unsigned()->default(0);
             $table->index('author_id');
         });
 
         Schema::table('task_categories', function (Blueprint $table) {
-            $table->integer('author_id')->unsigned();
+            $table->integer('author_id')->unsigned()->default(0);
             $table->index('author_id');
         });
 
         Schema::table('notes', function (Blueprint $table) {
-            $table->integer('author_id')->unsigned();
+            $table->integer('author_id')->unsigned()->default(0);
             $table->index('author_id');
         });
 
         Schema::table('journalentries', function (Blueprint $table) {
-            $table->integer('author_id')->unsigned();
+            $table->integer('author_id')->unsigned()->default(0);
             $table->index('author_id');
         });
     }

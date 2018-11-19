@@ -13,7 +13,7 @@ class AddTaskCategoryToTasks extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->integer('task_category_id')->unsigned();
+            $table->integer('task_category_id')->unsigned()->default(0);
             $table->index('task_category_id');
         });
     }
