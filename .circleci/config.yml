@@ -2,15 +2,22 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.1-node-browsers
-    working_directory: ~/jotistry
+      - image: circleci/php:7.2-node-browsers
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-      - run: sudo docker-php-ext-install zip
-      - run: sudo composer self-update
-      - run: composer install -n --prefer-dist
-      - run: npm install
-      - run: touch storage/testing.sqlite 
-      - run: php artisan key:generate --env=testing 
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t benovermyer/jotistry:$TAG -t benovermyer/jotistry:latest .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push benovermyer/jotistry:$TAG
+          docker push benovermyer/jotistry:latest
+workflows:
+  version: 2
+  build-and-publish:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
